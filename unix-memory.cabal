@@ -1,0 +1,40 @@
+Name:                unix-memory
+Version:             0.1.0
+Synopsis:            Unix memory syscalls
+Description:         unix memory syscalls (mmap, munmap, madvise, msync, mlock)
+License:             BSD3
+License-file:        LICENSE
+Copyright:           Vincent Hanquez <vincent@snarc.org>
+Author:              Vincent Hanquez <vincent@snarc.org>
+Maintainer:          vincent@snarc.org
+Category:            System
+Stability:           experimental
+Build-Type:          Simple
+Homepage:            http://github.com/vincenthz/hs-unix-memory
+Cabal-Version:       >=1.8
+data-files:          README.md
+
+Library
+  Exposed-modules:   System.Posix.Memory
+  Build-depends:     base >= 4 && < 5
+                   , unix
+  ghc-options:       -Wall -fwarn-tabs
+
+Test-Suite test-memorymap
+  type:              exitcode-stdio-1.0
+  hs-source-dirs:    tests
+  Main-is:           Tests.hs
+  Build-Depends:     base >= 3 && < 5
+                   , mtl
+                   , QuickCheck >= 2
+                   , HUnit
+                   , test-framework
+                   , test-framework-quickcheck2
+                   , test-framework-hunit
+                   , unix
+                   , unix-memory
+  ghc-options:       -Wall -fno-warn-orphans -fno-warn-missing-signatures
+
+source-repository head
+  type: git
+  location: git://github.com/vincenthz/hs-unix-memory

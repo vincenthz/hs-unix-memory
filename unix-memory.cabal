@@ -1,5 +1,5 @@
 Name:                unix-memory
-Version:             0.1.0
+Version:             0.1.1
 Synopsis:            Unix memory syscalls
 Description:         unix memory syscalls (mmap, munmap, madvise, msync, mlock)
 License:             BSD3

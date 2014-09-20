@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 module Main where
 
 import Test.Tasty (defaultMain, testGroup)
@@ -37,7 +38,9 @@ withDevZeroMapping f = withOpenFd "/dev/zero" $ \fd ->
 tests = testGroup "unix-memory"
     [ testProperty "page-size" $ sysconfPageSize > 0 && sysconfPageSize < (2^(20::Int))
     , testGroup "anonymous" $ runTestWithMapping withDummyMapping
+#ifdef __APPLE__
     , testGroup "fd"        $ runTestWithMapping withDevZeroMapping
+#endif
     ]
   where runTestWithMapping mapF =
                 [ testProperty "mmap-munmap" $ monadicIO $ run $ mapF $ \_ -> return True

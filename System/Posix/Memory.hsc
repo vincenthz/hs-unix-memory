@@ -21,6 +21,7 @@
 #include <unistd.h>
 
 {-# LANGUAGE ForeignFunctionInterface #-}
+{-# LANGUAGE CPP #-}
 module System.Posix.Memory
     ( memoryMap
     , memoryUnmap
@@ -136,7 +137,11 @@ memoryMap initPtr sz prots flag mfd off =
              .|. maybe 0 (const cMapFixed) initPtr
              .|. toMapFlag flag
 
+#ifdef __APPLE__
+        cMapAnon  = (#const MAP_ANON)
+#else
         cMapAnon  = (#const MAP_ANONYMOUS)
+#endif
         cMapFixed = (#const MAP_FIXED)
 
         toMapFlag MemoryMapShared  = (#const MAP_SHARED)

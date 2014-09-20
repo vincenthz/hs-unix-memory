@@ -25,11 +25,10 @@ Test-Suite test-memorymap
   Main-is:           Tests.hs
   Build-Depends:     base >= 3 && < 5
                    , mtl
-                   , QuickCheck >= 2
-                   , HUnit
-                   , test-framework
-                   , test-framework-quickcheck2
-                   , test-framework-hunit
+                   , tasty
+                   , tasty-hunit
+                   , tasty-quickcheck
+                   , QuickCheck
                    , unix
                    , unix-memory
   ghc-options:       -Wall -fno-warn-orphans -fno-warn-missing-signatures

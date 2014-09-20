@@ -1,7 +1,7 @@
 module Main where
 
-import Test.Framework (defaultMain, testGroup, Test)
-import Test.Framework.Providers.QuickCheck2 (testProperty)
+import Test.Tasty (defaultMain, testGroup)
+import Test.Tasty.QuickCheck
 
 import Test.QuickCheck.Monadic (monadicIO, run)
 
@@ -34,8 +34,7 @@ withDevZeroMapping f = withOpenFd "/dev/zero" $ \fd ->
                     closeFd
                     g
 
-tests :: [Test]
-tests =
+tests = testGroup "unix-memory"
     [ testProperty "page-size" $ sysconfPageSize > 0 && sysconfPageSize < (2^(20::Int))
     , testGroup "anonymous" $ runTestWithMapping withDummyMapping
     , testGroup "fd"        $ runTestWithMapping withDevZeroMapping

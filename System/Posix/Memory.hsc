@@ -21,19 +21,21 @@
 #include <unistd.h>
 
 {-# LANGUAGE ForeignFunctionInterface #-}
-module System.Posix.Memory (
-    memoryMap,
-    memoryUnmap,
-    memoryAdvise,
-    memoryLock,
-    memoryUnlock,
-    memoryProtect,
-    memorySync,
-    MemoryMapFlag(..),
-    MemoryProtection(..),
-    MemoryAdvice(..),
-    MemorySyncFlag(..),
-    sysconfPageSize
+module System.Posix.Memory
+    ( memoryMap
+    , memoryUnmap
+    , memoryAdvise
+    , memoryLock
+    , memoryUnlock
+    , memoryProtect
+    , memorySync
+    -- * Flags types
+    , MemoryMapFlag(..)
+    , MemoryProtection(..)
+    , MemoryAdvice(..)
+    , MemorySyncFlag(..)
+    -- * system page size
+    , sysconfPageSize
     ) where
 
 import System.Posix.Types

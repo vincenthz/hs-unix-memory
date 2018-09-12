@@ -73,6 +73,7 @@ foreign import ccall unsafe "sysconf"
 data MemoryMapFlag =
       MemoryMapShared  -- ^ memory changes are shared between process
     | MemoryMapPrivate -- ^ memory changes are private to process
+    | MemoryMapHugeTlb 
     deriving (Show,Read,Eq)
 
 -- | Memory protection
@@ -146,6 +147,7 @@ memoryMap initPtr sz prots flag mfd off =
 
         toMapFlag MemoryMapShared  = (#const MAP_SHARED)
         toMapFlag MemoryMapPrivate = (#const MAP_PRIVATE)
+        toMapFlag MemoryMapHugeTlb = (#const MAP_HUGETLB)
 
 memoryUnmap :: Ptr a -> CSize -> IO ()
 memoryUnmap ptr sz = throwErrnoIfMinus1_ "munmap" (c_munmap ptr sz)

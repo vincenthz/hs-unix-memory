@@ -73,7 +73,7 @@ foreign import ccall unsafe "sysconf"
 data MemoryMapFlag =
       MemoryMapShared  -- ^ memory changes are shared between process
     | MemoryMapPrivate -- ^ memory changes are private to process
-    | MemoryMapHugeTlb 
+    | MemoryMapHugeTlb -- ^ memory is allocated in huge pages
     deriving (Show,Read,Eq)
 
 -- | Memory protection
